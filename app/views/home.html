@@ -20,8 +20,8 @@
 				</ul>
 			</nav>
 		</header>
-		<main class="container-fluid">
-			<form action="/" method="post" class="w-50 mx-auto">
+		<main class="w-50 mx-auto">
+			<form action="/" method="post">
 				<fieldset
 					class="d-flex mx-auto my-3 justify-content-around text-center"
 				>
@@ -32,7 +32,6 @@
 						class="form-control"
 						value="<%= result.nb1 %>"
 					/>
-					<% console.log(result) %>
 					<div class="d-flex flex-column form-control">
 						<label>
 							<% if(result.operator === '+' || result.operator === undefined) {
@@ -72,15 +71,16 @@
 						value="<%= result.nb2 %>"
 					/>
 				</fieldset>
-				<fieldset class="d-flex justify-content-between">
-					<input type="submit" class="btn btn-primary" value="Calculate" />
-					<button class="btn btn-danger">Reset</button>
-				</fieldset>
+				<input type="submit" class="btn btn-primary" value="Calculate" />
 			</form>
-			<p class="mt-3 mx-auto w-50 input-group">
+
+			<p class="mt-3 input-group">
 				<span class="input-group-text">Result</span>
 				<span class="form-control"><%= result.result %></span>
 			</p>
+			<form action="/memory" method="post">
+				<input type="submit" class="btn btn-danger" value="Reset" />
+			</form>
 		</main>
 	</body>
 </html>

@@ -5,13 +5,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-		<title>Calculatrice</title>
+		<title>Calculator</title>
 		<link href="/bootstrap" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		<header class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<nav class="container-fluid">
-				<a href="/" class="navbar-brand">Calculatrice</a>
+				<a href="/" class="navbar-brand">Calculator</a>
 				<ul class="navbar-nav collapse navbar-collapse">
 					<li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
 					<li class="nav-item">
@@ -20,7 +20,7 @@
 				</ul>
 			</nav>
 		</header>
-		<main class="container">
+		<main class="container-fluid">
 			<form action="/" method="post" class="w-50 mx-auto">
 				<fieldset
 					class="d-flex mx-auto my-3 justify-content-around text-center"
@@ -30,31 +30,46 @@
 						name="nb1"
 						placeholder="Number 1"
 						class="form-control"
+						value="<%= result.nb1 %>"
 					/>
+					<% console.log(result) %>
 					<div class="d-flex flex-column form-control">
 						<label>
+							<% if(result.operator === '+' || result.operator === undefined) {
+							%>
 							<input type="radio" name="operator" value="add" checked />
-							+
+							<% } else { %>
+							<input type="radio" name="operator" value="add" />
+							<% } %> +
 						</label>
 						<label>
+							<% if(result.operator === '-') { %>
+							<input type="radio" name="operator" value="-" checked />
+							<% } else { %>
 							<input type="radio" name="operator" value="-" />
-							-
+							<% } %> -
 						</label>
 						<label>
+							<% if(result.operator === '*') { %>
+							<input type="radio" name="operator" value="*" checked />
+							<% } else { %>
 							<input type="radio" name="operator" value="*" />
-							x
+							<% } %> x
 						</label>
 						<label>
+							<% if(result.operator === '/') { %>
+							<input type="radio" name="operator" value="divide" checked />
+							<% } else { %>
 							<input type="radio" name="operator" value="divide" />
-							/
+							<% } %> /
 						</label>
 					</div>
-
 					<input
 						type="number"
 						name="nb2"
 						placeholder="Number 2"
 						class="form-control"
+						value="<%= result.nb2 %>"
 					/>
 				</fieldset>
 				<fieldset class="d-flex justify-content-between">
@@ -62,6 +77,10 @@
 					<button class="btn btn-danger">Reset</button>
 				</fieldset>
 			</form>
+			<p class="mt-3 mx-auto w-50 input-group">
+				<span class="input-group-text">Result</span>
+				<span class="form-control"><%= result.result %></span>
+			</p>
 		</main>
 	</body>
 </html>

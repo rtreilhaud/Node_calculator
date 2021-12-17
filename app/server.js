@@ -27,11 +27,13 @@ exports.server = (req, res) => {
 
 	// Page principale
 	if (url === '') {
+		const home = fs.readFileSync('./views/home.html', 'utf-8');
+		let result = {};
+
 		// Envoyer la page principale
 		if (req.method === 'GET') {
-			const home = fs.readFileSync('./views/home.html', 'utf-8');
 			res.writeHead(200, { 'Content-Type': 'text/html' });
-			res.write(home);
+			res.write(ejs.render(home, { result: result }));
 			res.end();
 			return;
 		}
@@ -39,11 +41,15 @@ exports.server = (req, res) => {
 		// Traiter les données POST
 		if (req.method === 'POST') {
 			req.on('data', (data) => {
-				const d = getObjectFromData(data);
-				d.result = calculate(d.nb1, d.nb2, d.operator);
-				console.log(d);
-				results.push(d);
-				console.log(results);
+				result = getObjectFromData(data);
+				result.result = calculate(result.nb1, result.nb2, result.operator);
+				results.push(result);
+			});
+			req.on('end', () => {
+				// Renvoie la page principale avec le résultat
+				res.writeHead(200, { 'Content-Type': 'text/html' });
+				res.write(ejs.render(home, { result: result }));
+				res.end();
 			});
 			return;
 		}

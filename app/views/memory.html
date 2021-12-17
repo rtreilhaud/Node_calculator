@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<title>Calculatrice - Memory</title>
+		<link href="/bootstrap" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<header class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<nav class="container-fluid">
+				<a href="/" class="navbar-brand">Calculatrice</a>
+				<ul class="navbar-nav collapse navbar-collapse">
+					<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+					<li class="nav-item">
+						<a href="/memory" class="nav-link active">Memory</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main class="container">
+			<ul>
+				<% results.map(res => { %>
+				<li>
+					<%= res.nb1 %> <%= res.operator %> <%= res.nb2 %> = <%= res.result%>
+					(<%= res.date %>)
+				</li>
+				<% }) %>
+			</ul>
+		</main>
+	</body>
+</html>

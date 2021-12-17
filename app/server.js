@@ -46,10 +46,10 @@ exports.server = (req, res) => {
 				results.push(result);
 			});
 			req.on('end', () => {
-				// Renvoie la page principale avec le résultat
-				res.writeHead(200, { 'Content-Type': 'text/html' });
-				res.write(ejs.render(home, { result: result }));
+				// Renvoie la page principale
+				res.writeHead(302, { Location: '/' });
 				res.end();
+				return;
 			});
 			return;
 		}
